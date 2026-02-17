@@ -1,8 +1,17 @@
 import { RoundedBox } from "@react-three/drei";
+import { useFrame } from "@react-three/fiber";
 import { useRef } from "react";
+import * as THREE from "three";
 
 export const AnimatedBox = ({ boxPositions, ...props }) => {
   const box = useRef();
+
+  useFrame(({ clock }) => {
+    const seconds = parseInt(clock.getElapsedTime());
+    const targetPosition = boxPositions[seconds % boxPositions.length];
+
+    box.current.position.lerp(targetPosition, 0.05);
+  });
 
   return (
     <group {...props}>
