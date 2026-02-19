@@ -1,5 +1,6 @@
 import { useRef } from "react";
 import * as THREE from "three";
+
 export const Background = () => {
   const skyMaterial = useRef();
 
