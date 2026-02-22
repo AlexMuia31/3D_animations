@@ -3,7 +3,12 @@ import { motion } from "framer-motion-3d";
 export const Teeth = () => {
   return (
     <group>
-      <motion.mesh position-x={-1} position-y={-1}>
+      <motion.mesh
+        position-x={-1}
+        position-y={-1}
+        animate={{ y: 0 }}
+        transition={{ repeat: Infinity, repeatDelay: 1 }}
+      >
         <coneGeometry args={[0.5, 1, 4]} />
         <meshStandardMaterial color="#ffffff" />
       </motion.mesh>
