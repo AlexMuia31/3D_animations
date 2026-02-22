@@ -1,6 +1,7 @@
 import { useEffect, useRef } from "react";
 import * as THREE from "three";
 import { gsap } from "gsap";
+import { useFrame } from "@react-three/fiber";
 
 export const Background = () => {
   const skyMaterial = useRef();
@@ -21,6 +22,13 @@ export const Background = () => {
         color: "#7c4e9f",
       });
   }, []);
+
+  useFrame(() => {
+    if (!tl.current) {
+      return;
+    }
+    skyMaterial.current.color.set(skyData.current.color);
+  });
 
   return (
     <mesh rotation-x={Math.PI / 4}>
