@@ -2,6 +2,7 @@ import { useEffect, useRef } from "react";
 import * as THREE from "three";
 import { gsap } from "gsap";
 import { useFrame } from "@react-three/fiber";
+import { useScroll } from "@react-three/drei";
 
 export const Background = () => {
   const skyMaterial = useRef();
@@ -21,12 +22,16 @@ export const Background = () => {
         duration: 1,
         color: "#7c4e9f",
       });
+    tl.current.pause();
   }, []);
+
+  const scrollData = useScroll();
 
   useFrame(() => {
     if (!tl.current) {
       return;
     }
+    tl.current.progress(scrollData.offset);
     skyMaterial.current.color.set(skyData.current.color);
   });
 
