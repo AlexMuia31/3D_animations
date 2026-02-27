@@ -1,4 +1,5 @@
 import { Dodecahedron } from "@react-three/drei";
+import { useSpring } from "@react-spring/three";
 
 export const AnimatedDodecahedron = () => {
   return (
