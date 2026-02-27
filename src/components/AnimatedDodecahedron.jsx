@@ -1,5 +1,5 @@
 import { Dodecahedron } from "@react-three/drei";
-import { useSpring } from "@react-spring/three";
+import { animated, useSpring } from "@react-spring/three";
 
 export const AnimatedDodecahedron = () => {
   const { x, y, rotationX, rotationZ } = useSpring({
@@ -56,10 +56,15 @@ export const AnimatedDodecahedron = () => {
     immediate: true,
   });
   return (
-    <group position-x={-1} position-y={1}>
+    <animated.group
+      position-x={x}
+      position-y={y}
+      rotation-x={rotationX}
+      rotation-z={rotationZ}
+    >
       <Dodecahedron>
         <meshStandardMaterial color="red" transparent opacity={0.6} />
       </Dodecahedron>
-    </group>
+    </animated.group>
   );
 };
